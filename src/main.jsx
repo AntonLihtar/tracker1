@@ -12,13 +12,12 @@ import './index.css'
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBfIBjRUm57RKllbHiljNop96V8RgbVnX8",
-    authDomain: "tracker1-7b0ea.firebaseapp.com",
-    projectId: "tracker1-7b0ea",
-    storageBucket: "tracker1-7b0ea.appspot.com",
-    messagingSenderId: "93019054641",
-    appId: "1:93019054641:web:b190f3ccad2233bb7aeb10",
-    measurementId: "G-HCM8F05M50"
+    apiKey: "AIzaSyAeCmDLL5b3BgOnKsliDsDoX-2nhs3LdLU",
+    authDomain: "tracker1-9f0dc.firebaseapp.com",
+    projectId: "tracker1-9f0dc",
+    storageBucket: "tracker1-9f0dc.appspot.com",
+    messagingSenderId: "962834318950",
+    appId: "1:962834318950:web:95e365e5562b511b73cfa7"
 };
 
 // Initialize Firebase
