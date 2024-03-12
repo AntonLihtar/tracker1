@@ -26,13 +26,13 @@ const app = initializeApp(firebaseConfig);
 export const Context = createContext(null);
 
 const auth = getAuth(app)
-const firestore = getFirestore(app)
+const db = getFirestore(app)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
         <Context.Provider value={{
             app,
             auth,
-            firestore
+            db
         }}>
             <App/>
         </Context.Provider>

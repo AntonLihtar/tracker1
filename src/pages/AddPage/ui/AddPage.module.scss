@@ -3,3 +3,10 @@
   height: 60px;
   background-color: gray;
 }
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}

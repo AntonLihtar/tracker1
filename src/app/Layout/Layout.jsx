@@ -10,7 +10,6 @@ export const Layout = () => {
             <NavBar/>
 
             <hr/>
-
             <Container>
                 <Outlet/>
             </Container>
