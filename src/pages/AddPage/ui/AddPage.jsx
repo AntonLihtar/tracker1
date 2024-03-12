@@ -34,7 +34,6 @@ export const AddPage = () => {
                 console.log(`${doc.id} => ${doc.data().title}`);
             });
 
-
             // const docRef = await addDoc(collection(db, "brands"), {
             //     first: "Ada",
             //     last: "Lovelace",
