@@ -4,10 +4,17 @@ import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 const filter = createFilterOptions();
 
-export const FreeSoloCreateOption = ({ options, valueState, setValueState, label }) => {
+export const FreeSoloCreateOption = ({
+    options,
+    valueState,
+    setValueState,
+    label,
+    disabled
+}) => {
 
     return (
         <Autocomplete
+            disabled={disabled}
             value={valueState}
             onChange={(event, newValue) => {
                 if (typeof newValue === 'string') {

@@ -1,28 +1,29 @@
-import { AuthPage } from "../pages/AuthPage/index.js";
-import cls from './App.module.scss'
-import { Layout } from "./Layout/Layout.jsx";
-import { Navigate} from "react-router-dom";
-
-
+import { useContext} from "react";
 import {
+    Navigate,
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import { useContext} from "react";
-import { Context } from "src/main.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 import { Home } from "@mui/icons-material";
+
+import { Context } from "src/main.jsx";
 import { AllProduct } from "src/pages/AllProduct/index.js";
-import { AddPage } from "src/pages/AddPage/index.js";
+import { AuthPage } from "src/pages/AuthPage/index.js";
+import { Loader } from "src/widgets/Loader/ui/Loader.jsx"
 import { Statistics } from "src/pages/Statistics/index.js";
-import { Loader } from "src/widgets/Loader/ui/Loader.jsx";
+import { AddPage } from "src/pages/AddPage/index.js";
+import { Layout } from "./Layout/Layout.jsx";
 
 
+import cls from './App.module.scss'
+
+console.log()
 function App() {
     const { auth } = useContext(Context)
     const [user, loading, error] = useAuthState(auth)
 
-    console.log(user)
 
     const publicRouter = createBrowserRouter([
         {

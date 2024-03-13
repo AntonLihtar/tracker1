@@ -27,8 +27,6 @@ export const NavBar = () => {
     const { auth } = useContext(Context)
     const [user] = useAuthState(auth)
 
-    console.log(user)
-
     const settings = [
         {
             name: 'Profile',
