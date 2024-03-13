@@ -28,6 +28,11 @@ export const AddPage = () => {
     const [arrModels, setArrModels] = useState([])
     const [arrModelsElement, setArrModelsElement] = useState([])
 
+    const refreshBrands = async () => {
+        const res = await getCollections(db, 'brands')
+        setArrBrands(res)
+        return 'OK'
+    }
     const refreshModels = async () => {
         const res = await getModels(db)
         setArrModels(res)
@@ -36,9 +41,7 @@ export const AddPage = () => {
 
     useEffect(() => {
         //все бренды в консоль (не настроено)
-        getCollections(db, 'brands').then(r => {
-            setArrBrands(r)
-        })
+        refreshBrands().then(r => {})
         refreshModels().then(r => {})
 
     }, [])
@@ -64,7 +67,10 @@ export const AddPage = () => {
         e.preventDefault()
         if (valueBrand && !arrBrands.find(el => getEqual(el, valueBrand))) {
             setCollections(db, 'brands', valueBrand)
-                .then(r => console.log(`Запись в базу brands: title = ${valueBrand.title}; ID = `, r))
+                .then(r => {
+                    console.log(`Запись в базу brands: title = ${valueBrand.title}; ID = `, r)
+                    refreshBrands().then(r => console.log('Обновление brands', r))
+                })
         }
 
         if (valueModel && !arrModelsElement.find(el => getEqual(el, valueModel))) {
