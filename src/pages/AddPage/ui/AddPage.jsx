@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 
 import cls from "./AddPage.module.scss";
 import { SelectToState } from "src/features/SelectToState/index.js";
+import { InputAdornment } from "@mui/material";
 
 
 //db
@@ -24,7 +25,7 @@ export const AddPage = () => {
     const [valueBrand, setValueBrand] = React.useState(null);
     const [valueModel, setValueModel] = React.useState(null);
     const [valueState, setValueState] = React.useState('in_stock');
-    const [valueSImei, setValueImei] = React.useState('');
+    const [valueImei, setValueImei] = React.useState('');
     const [valueExpenses, setValueExpenses] = React.useState(0);
     const [valueDescription, setValueDescription] = React.useState('');
     const [valueOtherExpenses, setValueOtherExpenses] = React.useState(0);
@@ -100,11 +101,13 @@ export const AddPage = () => {
         console.log('valueBrand', valueBrand)
         console.log('valueModel', valueModel)
         console.log('valueState', valueState)
-        console.log('valueSImei', valueSImei)
+        console.log('valueImei', valueImei)
         console.log('valueExpenses', valueExpenses)
         console.log('valueDescription', valueDescription)
         console.log('valueOtherExpenses', valueOtherExpenses)
         console.log('valuePrice', valuePrice)
+        console.log('date', valuePrice)
+        console.log('dateSale', valuePrice)
     }
 
 
@@ -154,7 +157,7 @@ export const AddPage = () => {
                         shrink: true,
                     }}
                     variant="outlined"
-                    value={valueSImei}
+                    value={valueImei}
                     onChange={(event) => {
                         setValueImei(event.target.value)
                     }}
@@ -164,11 +167,11 @@ export const AddPage = () => {
                 <TextField
                     id="outlined-number"
                     label="Стоимость"
-                    type="number"
-                    InputLabelProps={{
-                        shrink: true,
+                    // type="number"
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                     }}
-                    value={valueExpenses}
+                    // value={valueExpenses}
                     onChange={(event) => {
                         setValueExpenses(Number(event.target.value))
                     }}
@@ -181,7 +184,7 @@ export const AddPage = () => {
                         shrink: true,
                     }}
                     id="outlined-basic"
-                    label="Описание / доп расходы"
+                    label="Комплект / описание / доп расходы"
                     variant="outlined"
                     value={valueDescription}
                     onChange={(event) => {
