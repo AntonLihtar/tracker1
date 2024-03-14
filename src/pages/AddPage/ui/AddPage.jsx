@@ -167,11 +167,10 @@ export const AddPage = () => {
                 <TextField
                     id="outlined-number"
                     label="Стоимость"
-                    // type="number"
+                    type="number"
                     InputProps={{
                         endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                     }}
-                    // value={valueExpenses}
                     onChange={(event) => {
                         setValueExpenses(Number(event.target.value))
                     }}
@@ -196,10 +195,9 @@ export const AddPage = () => {
                     id="outlined-number"
                     label="Стоимость доп расходов"
                     type="number"
-                    InputLabelProps={{
-                        shrink: true,
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                     }}
-                    value={valueOtherExpenses}
                     onChange={(event) => {
                         setValueOtherExpenses(Number(event.target.value))
                     }}
@@ -209,8 +207,8 @@ export const AddPage = () => {
                     id="outlined-number"
                     label="Цена продажи"
                     type="number"
-                    InputLabelProps={{
-                        shrink: true,
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                     }}
                     value={valuePrice}
                     onChange={(event) => {
