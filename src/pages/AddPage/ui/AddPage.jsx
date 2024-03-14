@@ -63,7 +63,6 @@ export const AddPage = () => {
 
     useEffect(() => {
         if (valueBrand) {
-
             //обнуляем 2рое поле
             setValueModel(null)
             const obj = arrModels.find(el => getEqual(el, valueBrand))
@@ -98,16 +97,30 @@ export const AddPage = () => {
 
         */
 
-        console.log('valueBrand', valueBrand)
-        console.log('valueModel', valueModel)
-        console.log('valueState', valueState)
-        console.log('valueImei', valueImei)
-        console.log('valueExpenses', valueExpenses)
-        console.log('valueDescription', valueDescription)
-        console.log('valueOtherExpenses', valueOtherExpenses)
-        console.log('valuePrice', valuePrice)
-        console.log('date', valuePrice)
-        console.log('dateSale', valuePrice)
+        // console.log('valueBrand', valueBrand)
+        // console.log('valueModel', valueModel)
+        // console.log('valueState', valueState)
+        // console.log('valueImei', valueImei)
+        // console.log('valueExpenses', valueExpenses)
+        // console.log('valueDescription', valueDescription)
+        // console.log('valueOtherExpenses', valueOtherExpenses)
+        // console.log('valuePrice', valuePrice)
+        const dateDay = new Date().toLocaleString().slice(0, 10)
+        // console.log('date', dateDay)
+        // console.log('dateSale', '')
+
+        setCollections(db, 'products', {
+            brand: valueBrand.title,
+            model: valueModel.title,
+            state: valueState,
+            imei: valueImei,
+            expenses: valueExpenses,
+            description: valueDescription,
+            otherExpenses: valueOtherExpenses,
+            price: valuePrice,
+            date: dateDay,
+            dateSale: ''
+        }).then(r => {console.log('Данные добавлены: ', r)})
     }
 
 
@@ -210,7 +223,6 @@ export const AddPage = () => {
                     InputProps={{
                         endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                     }}
-                    value={valuePrice}
                     onChange={(event) => {
                         setValuePrice(Number(event.target.value))
                     }}
