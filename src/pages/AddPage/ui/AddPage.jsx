@@ -76,8 +76,7 @@ export const AddPage = () => {
     const submitForm = (e) => {
         e.preventDefault()
 
-        /*
-        TODO : ВКЛЮЧИТЬ для добавления в базы
+        /* TODO : ВКЛЮЧИТЬ для добавления в базы*/
         if (valueBrand && !arrBrands.find(el => getEqual(el, valueBrand))) {
             setCollections(db, 'brands', valueBrand)
                 .then(r => {
@@ -95,7 +94,6 @@ export const AddPage = () => {
         }
         refreshModels().then(r => console.log('Обновление models', r))
 
-        */
 
         // console.log('valueBrand', valueBrand)
         // console.log('valueModel', valueModel)
@@ -120,7 +118,9 @@ export const AddPage = () => {
             price: valuePrice,
             date: dateDay,
             dateSale: ''
-        }).then(r => {console.log('Данные добавлены: ', r)})
+        }).then(r => {
+            console.log('Данные добавлены: ', r)
+        })
     }
 
 
