@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { Home } from "@mui/icons-material";
 
 import { Context } from "src/main.jsx";
 import { AllProduct } from "src/pages/AllProduct/index.js";
@@ -16,7 +15,7 @@ import { Statistics } from "src/pages/Statistics/index.js";
 import { AddPage } from "src/pages/AddPage/index.js";
 import { Layout } from "./Layout/Layout.jsx";
 
-
+import { HomePage } from "src/pages/HomePage/index.js";
 import cls from './App.module.scss'
 
 console.log()
@@ -43,15 +42,15 @@ function App() {
             children: [
                 {
                     path: '/',
-                    element: <Home/>,
-                },
-                {
-                    path: '/all',
-                    element: <AllProduct/>,
+                    element: <HomePage/>,
                 },
                 {
                     path: '/add',
                     element: <AddPage/>,
+                },
+                {
+                    path: '/all',
+                    element: <AllProduct/>,
                 },
                 {
                     path: '/stat',

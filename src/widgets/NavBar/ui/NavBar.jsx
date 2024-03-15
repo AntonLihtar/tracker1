@@ -18,8 +18,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const pages = [
     { name: 'Главная', path: '/' },
-    { name: 'Все товары', path: 'all' },
     { name: 'Добавить товар', path: 'add' },
+    { name: 'Все товары', path: 'all' },
     { name: 'Статистика', path: 'stat' }];
 
 

@@ -3,3 +3,16 @@
   height: 60px;
   background-color: gray;
 }
+
+.wrapper{
+  display: flex;
+  div{
+    border-bottom: solid 2px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    //border-color: #d71414;
+    padding: 5px;
+    //border-block: solid;
+    //writing-mode: horizontal-tb;
+  }
+}
