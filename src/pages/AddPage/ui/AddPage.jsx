@@ -6,30 +6,52 @@ import { nanoid } from 'nanoid'
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { InputAdornment } from "@mui/material";
+import { InputAdornment, Modal } from "@mui/material";
 
 import { SelectToState } from "src/features/SelectToState/index.js";
 import cls from "./AddPage.module.scss";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 
 
 //db
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    gap: 3,
+    bgcolor: 'background.paper',
+    borderRadius: 3,
+    boxShadow: 24,
+    p: 4,
+};
 
 
 export const AddPage = () => {
 
     const {app, db, auth} =  useOutletContext();
 
+    const navigate = useNavigate();
+
     //модели которых еще нет в базе
     const [valueBrand, setValueBrand] = React.useState(null);
     const [valueModel, setValueModel] = React.useState(null);
-    const [valueState, setValueState] = React.useState('in_stock');
+    const [valueState, setValueState] = React.useState('В наличии');
     const [valueImei, setValueImei] = React.useState('');
     const [valueExpenses, setValueExpenses] = React.useState(0);
     const [valueDescription, setValueDescription] = React.useState('');
     const [valueOtherExpenses, setValueOtherExpenses] = React.useState(0);
     const [valuePrice, setValuePrice] = React.useState(0);
 
+    //модалка
+    const [openModal, setOpenModal] = useState(false)
 
     //все модели и бренды в базе
     const [arrBrands, setArrBrands] = useState([])
@@ -93,18 +115,7 @@ export const AddPage = () => {
         }
         refreshModels().then(r => console.log('Обновление models', r))
 
-
-        // console.log('valueBrand', valueBrand)
-        // console.log('valueModel', valueModel)
-        // console.log('valueState', valueState)
-        // console.log('valueImei', valueImei)
-        // console.log('valueExpenses', valueExpenses)
-        // console.log('valueDescription', valueDescription)
-        // console.log('valueOtherExpenses', valueOtherExpenses)
-        // console.log('valuePrice', valuePrice)
         const dateDay = new Date().toLocaleString().slice(0, 10)
-        // console.log('date', dateDay)
-        // console.log('dateSale', '')
 
         setCollections(db, 'products', {
             brand: valueBrand.title,
@@ -119,10 +130,18 @@ export const AddPage = () => {
             dateSale: '',
             id: nanoid(6)
         }).then(r => {
-            console.log('Данные добавлены: ', r)
+            setOpenModal(true)
+            setTimeout(()=>{
+                setOpenModal(false)
+                navigate('/')
+            }, 3000)
         })
     }
 
+    const closeBtnGoHome = () => {
+        setOpenModal(false)
+        navigate('/')
+    }
 
     return (
         <Box
@@ -239,6 +258,25 @@ export const AddPage = () => {
                     Отправить
                 </Button>
             </form>
+            <Modal
+                open={openModal}
+                onClose={closeBtnGoHome}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Данные отправлены
+                    </Typography>
+                    <Button
+                        size="large"
+                        variant="contained"
+                        onClick={closeBtnGoHome}
+                    >
+                        Ок
+                    </Button>
+                </Box>
+            </Modal>
         </Box>
     );
 };

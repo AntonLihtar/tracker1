@@ -13,17 +13,17 @@ export const SelectToState = ({valueState,setValueState }) => {
 
     return (
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">состояние</InputLabel>
+            <InputLabel id="demo-simple-select-label">Состояние</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={valueState}
-                label={"состояние"}
+                label={"Состояние"}
                 onChange={handleValueChange}
             >
-                <MenuItem value={'in_stock'}>В наличии</MenuItem>
-                <MenuItem value={'for_sale'}>Продается</MenuItem>
-                <MenuItem value={'sold'}>Продан</MenuItem>
+                <MenuItem value={'В наличии'}>В наличии</MenuItem>
+                <MenuItem value={'Продается'}>Продается</MenuItem>
+                <MenuItem value={'Продан'}>Продан</MenuItem>
             </Select>
         </FormControl>
     );

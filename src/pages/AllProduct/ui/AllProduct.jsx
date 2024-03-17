@@ -14,7 +14,7 @@ export const AllProduct = () => {
     }
 
     useEffect(() => {
-        getProducts().then(r => console.log(r))
+        getProducts()
     }, [db])
 
     return (

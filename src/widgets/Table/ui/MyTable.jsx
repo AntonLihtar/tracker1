@@ -11,6 +11,7 @@ import { useMemo } from "react";
 import { TableCellBold } from "src/shared/ui/TableCellBold/TableCellBold.jsx";
 import { TableCellNorm } from "src/shared/ui/TableCellNorm/TableCellNorm.jsx";
 import { ButtonTable } from "src/shared/ui/ButtonTable/ButtonTable.jsx";
+import { setBackgroundColor } from "src/shared/lib/setBackgroundColor/setBackgroundColor.js";
 
 
 export const MyTable = ({ products }) => {
@@ -33,11 +34,14 @@ export const MyTable = ({ products }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {products.map((product) => (
+                    {products.filter(el => el.state !== 'Продан').map((product) => (
                         <TableRow
                             key={product.id}
                             className={cls.tableRow}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            sx={{
+                                '&:last-child td, &:last-child th': { border: 0 },
+                                backgroundColor: setBackgroundColor(product.state)
+                            }}
                         >
                             <TableCellNorm
                                 component="th"

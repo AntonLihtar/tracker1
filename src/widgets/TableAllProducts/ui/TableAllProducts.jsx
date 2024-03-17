@@ -9,6 +9,7 @@ import cls from "./MyTableAllProduct.module.scss";
 import { TableCellBold } from "src/shared/ui/TableCellBold/TableCellBold.jsx";
 import { TableCellNorm } from "src/shared/ui/TableCellNorm/TableCellNorm.jsx";
 import { ButtonTable } from "src/shared/ui/ButtonTable/ButtonTable.jsx";
+import { setBackgroundColor } from "src/shared/lib/setBackgroundColor/setBackgroundColor.js";
 
 
 export const TableAllProducts = ({ products }) => {
@@ -40,7 +41,10 @@ export const TableAllProducts = ({ products }) => {
                         <TableRow
                             key={product.id}
                             className={cls.tableRow}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            sx={{
+                                '&:last-child td, &:last-child th': { border: 0 },
+                                backgroundColor: setBackgroundColor(product.state)
+                        }}
                         >
                             <TableCellNorm component="th" scope="row">
                                 {product.brand}
@@ -63,9 +67,9 @@ export const TableAllProducts = ({ products }) => {
                             <TableCellNorm>
                                 {product.otherExpenses}
                             </TableCellNorm>
-                            <TableCellNorm>
+                            <TableCellBold>
                                 {Number(product.expenses) + Number(product.otherExpenses)}
-                            </TableCellNorm>
+                            </TableCellBold>
                             <TableCellNorm>
                                 {product.date}
                             </TableCellNorm>
@@ -77,9 +81,9 @@ export const TableAllProducts = ({ products }) => {
                                 {product.dateSale || 'нет'}
                             </TableCellNorm>
 
-                            <TableCellNorm>
+                            <TableCellBold>
                                 {Number(product.price) - Number(product.expenses) - Number(product.otherExpenses)}
-                            </TableCellNorm>
+                            </TableCellBold>
 
                             <TableCellNorm>
                                 <ButtonTable color="warning">

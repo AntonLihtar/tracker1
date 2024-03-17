@@ -16,7 +16,7 @@ export const HomePage = () => {
     }
 
     useEffect(() => {
-        getProducts().then(r => console.log(r))
+        getProducts()
     }, [db])
 
     return (
