@@ -1,39 +1,56 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './app/App.jsx'
-import { initializeApp } from "firebase/app";
-import {getFirestore} from 'firebase/firestore';
 
-
-
-
-import { getAuth } from 'firebase/auth';
 import './index.css'
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import { AuthPage } from "src/pages/AuthPage/index.js";
+import { HomePage } from "src/pages/HomePage/index.js";
+import { AddPage } from "src/pages/AddPage/index.js";
+import { AllProduct } from "src/pages/AllProduct/index.js";
+import { Statistics } from "src/pages/Statistics/index.js";
 
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAeCmDLL5b3BgOnKsliDsDoX-2nhs3LdLU",
-    authDomain: "tracker1-9f0dc.firebaseapp.com",
-    projectId: "tracker1-9f0dc",
-    storageBucket: "tracker1-9f0dc.appspot.com",
-    messagingSenderId: "962834318950",
-    appId: "1:962834318950:web:95e365e5562b511b73cfa7"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-export const Context = createContext(null);
-
-const auth = getAuth(app)
-const db = getFirestore(app)
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-        <Context.Provider value={{
-            app,
-            auth,
-            db
-        }}>
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element:
+        // <React.StrictMode>
             <App/>
-        </Context.Provider>
-)
+        // </React.StrictMode>
+        ,
+        children: [
+            {
+                path: "/",
+                element: <HomePage/>,
+            },
+            {
+                path: "/auth",
+                element: <AuthPage/>,
+            },
+            {
+                path: '/add',
+                element: <AddPage/>,
+            },
+            {
+                path: '/all',
+                element: <AllProduct/>,
+            },
+            {
+                path: '/stat',
+                element: <Statistics/>,
+            },
+            {
+                path: "*",
+                element: <Navigate replace to="home"/>
+            },
+        ]
+    },
+    {
+        path: "*",
+        element: <Navigate replace to="/"/>
+    },
+]);
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<RouterProvider router={router}/>)

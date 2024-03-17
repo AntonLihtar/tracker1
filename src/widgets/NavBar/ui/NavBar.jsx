@@ -10,21 +10,20 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { NavLink } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import cls from './NavBar.module.scss';
-import { useContext } from "react";
-import { Context } from "src/main.jsx";
-import { useAuthState } from "react-firebase-hooks/auth";
+
 
 const pages = [
     { name: 'Главная', path: '/' },
     { name: 'Добавить товар', path: 'add' },
     { name: 'Все товары', path: 'all' },
-    { name: 'Статистика', path: 'stat' }];
+    { name: 'Статистика', path: 'stat' }
+];
 
 
-export const NavBar = () => {
-    const { auth } = useContext(Context)
+export const NavBar = ({auth}) => {
     const [user] = useAuthState(auth)
 
     const settings = [
@@ -42,7 +41,7 @@ export const NavBar = () => {
         },
     ];
 
-
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenUserMenu = (event) => {
@@ -54,16 +53,85 @@ export const NavBar = () => {
         callback();
     };
 
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{backgroundColor: '#8481a5'}}>
+
             <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+                <Toolbar disableGutters >
+
+                    {/*TODO mobile menu*/}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                            MenuListProps={{
+                                sx: {
+                                    backgroundColor: '#e4e3ec',
+                                }
+                            }}
+                        >
+                            {pages.map(({ name, path }) => (
+                                <MenuItem key={name} onClick={handleCloseNavMenu}>
+                                    <NavLink
+                                        to={path}
+                                        className={cls.linkMob}
+                                        style={({ isActive }) => {
+                                            return {
+                                                color: isActive ? 'red' : 'inherit',
+                                            };
+                                        }}>
+                                        <Typography
+                                            textAlign="center"
+                                            variant="h6"
+                                        >
+                                            {name}
+                                        </Typography>
+                                    </NavLink>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+
+                    {/*/!*TODO full menu*!/*/}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                         {pages.map(({ name, path }) => (
                             <Button
                                 key={name}
                                 size="large"
-                                sx={{ my: 2, mx: 2, color: 'white', display: 'block', }}
+                                sx={{ my: 1, mx: 1, color: 'white', display: 'block', }}
                             >
                                 <NavLink
                                     to={path}
@@ -78,6 +146,7 @@ export const NavBar = () => {
                             </Button>
                         ))}
                     </Box>
+
 
                     <Box
                         display="flex"
@@ -116,6 +185,8 @@ export const NavBar = () => {
                             ))}
                         </Menu>
                     </Box>
+
+
                 </Toolbar>
             </Container>
         </AppBar>

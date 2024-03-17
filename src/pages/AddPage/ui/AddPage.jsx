@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FreeSoloCreateOption } from "src/features/FreeSoloCreateOption/index.js";
-import { Context } from "src/main.jsx";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { getCollections, getModels, setCollections, setCollectionsToID } from "../api/brandsAPI.js";
 
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
-import cls from "./AddPage.module.scss";
-import { SelectToState } from "src/features/SelectToState/index.js";
 import { InputAdornment } from "@mui/material";
+
+import { SelectToState } from "src/features/SelectToState/index.js";
+import cls from "./AddPage.module.scss";
+import { useOutletContext } from "react-router-dom";
 
 
 //db
@@ -18,8 +17,7 @@ import { InputAdornment } from "@mui/material";
 
 export const AddPage = () => {
 
-    const { auth, db, app } = useContext(Context)
-    const [user] = useAuthState(auth)
+    const {app, db, auth} =  useOutletContext();
 
     //модели которых еще нет в базе
     const [valueBrand, setValueBrand] = React.useState(null);
@@ -126,15 +124,17 @@ export const AddPage = () => {
 
     return (
         <Box
-            // height={200}
             width={1.0}
             my={4}
             display="flex"
             alignItems="center"
             flexDirection="column"
             gap={4}
-            p={2}
-            sx={{ border: '2px solid grey' }}>
+            sx={{
+                padding: { xs: 0, sm: 2 },
+                border: { xs: 'none', sm: '2px solid grey' }
+            }}
+        >
             <h2>Товар</h2>
 
             <form

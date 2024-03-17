@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { classNames } from "src/shared/lib/classNames/classNames.js";
-import Button from '@mui/material/Button';
-import cls from "./AuthPage.module.scss";
-import { Context } from "src/main.jsx";
+import React from 'react';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-export const AuthPage = () => {
+import Button from '@mui/material/Button';
+import { classNames } from "src/shared/lib/classNames/classNames.js";
+
+import cls from "./AuthPage.module.scss";
+
+export const AuthPage = ({auth}) => {
 
     const provider = new GoogleAuthProvider();
-    const {auth} = useContext(Context)
 
     const login = async () => {
         const {user} = await signInWithPopup(auth, provider)

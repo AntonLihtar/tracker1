@@ -13,12 +13,6 @@ export const getCollections = async (db, nameCollection) => {
         });
         return arr
 
-        // const docRef = await addDoc(collection(db, "brands"), {
-        //     first: "Ada",
-        //     last: "Lovelace",
-        //     born: 1815
-        // });
-        // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
         return null
