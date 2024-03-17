@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FreeSoloCreateOption } from "src/features/FreeSoloCreateOption/index.js";
 import { getCollections, getModels, setCollections, setCollectionsToID } from "../api/brandsAPI.js";
+import { nanoid } from 'nanoid'
 
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -115,7 +116,8 @@ export const AddPage = () => {
             otherExpenses: valueOtherExpenses,
             price: valuePrice,
             date: dateDay,
-            dateSale: ''
+            dateSale: '',
+            id: nanoid(6)
         }).then(r => {
             console.log('Данные добавлены: ', r)
         })

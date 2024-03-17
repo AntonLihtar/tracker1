@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { nanoid } from 'nanoid'
+
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -31,7 +31,7 @@ export const MyTable = ({ products }) => {
                 <TableBody>
                     {products.map((product) => (
                         <TableRow
-                            key={nanoid(6)}
+                            key={product.id}
                             className={cls.tableRow}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
