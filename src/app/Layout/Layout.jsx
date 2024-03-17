@@ -10,7 +10,7 @@ export const Layout = ({ auth, db, app }) => {
         <div>
             <NavBar auth={auth}/>
             <hr/>
-            <Container>
+            <Container maxWidth={"xl"}>
                 <Outlet context={{ auth, db, app }}/>
             </Container>
         </div>

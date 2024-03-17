@@ -3,24 +3,21 @@ import { useOutletContext } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 
+import { getCollections } from "src/shared/api/getRequestsFirebase.js";
 import { MyTable } from "src/widgets/Table/index.js";
-import { getCollections } from "src/pages/AddPage/api/brandsAPI.js";
-
 import cls from "./HomePage.module.scss";
 
 export const HomePage = () => {
-    const {app, db, auth} =  useOutletContext();
+    const { app, db, auth } = useOutletContext();
     const [products, setProducts] = useState([])
 
     const getProducts = async () => {
-        const res = await getCollections(db, 'products')
-        res && setProducts(res)
-        return 'OK'
+        setProducts(await getCollections(db, 'products'))
     }
 
-    useEffect(()=> {
-        db && getProducts().then(r => console.log('products loading', r))
-    }, [])
+    useEffect(() => {
+        getProducts().then(r => console.log(r))
+    }, [db])
 
     return (
         <Box
