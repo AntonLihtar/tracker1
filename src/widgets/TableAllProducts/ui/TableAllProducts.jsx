@@ -23,7 +23,6 @@ export const TableAllProducts = ({ products }) => {
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
 
-
                 <TableHead>
                     <TableRow className={cls.tableRowHeader}>
                         {tableCellTitle.map(el => (
@@ -37,69 +36,70 @@ export const TableAllProducts = ({ products }) => {
 
 
                 <TableBody>
-                    {products.map((product) => (
-                        <TableRow
-                            key={product.id}
-                            className={cls.tableRow}
-                            sx={{
-                                '&:last-child td, &:last-child th': { border: 0 },
-                                backgroundColor: setBackgroundColor(product.state)
-                        }}
-                        >
-                            <TableCellNorm component="th" scope="row">
-                                {product.brand}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.model}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.state}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.imei}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.description}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.expenses}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.otherExpenses}
-                            </TableCellNorm>
-                            <TableCellBold>
-                                {Number(product.expenses) + Number(product.otherExpenses)}
-                            </TableCellBold>
-                            <TableCellNorm>
-                                {product.date}
-                            </TableCellNorm>
-                            <TableCellNorm>
-                                {product.price}
-                            </TableCellNorm>
+                    {products && Object.values(products)
+                        .map((product) => (
+                            <TableRow
+                                key={product.id}
+                                className={cls.tableRow}
+                                sx={{
+                                    '&:last-child td, &:last-child th': { border: 0 },
+                                    backgroundColor: setBackgroundColor(product.state)
+                                }}
+                            >
+                                <TableCellNorm component="th" scope="row">
+                                    {product.brand}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.model}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.state}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.imei}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.description}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.expenses}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.otherExpenses}
+                                </TableCellNorm>
+                                <TableCellBold>
+                                    {Number(product.expenses) + Number(product.otherExpenses)}
+                                </TableCellBold>
+                                <TableCellNorm>
+                                    {product.date}
+                                </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.price}
+                                </TableCellNorm>
 
-                            <TableCellNorm>
-                                {product.dateSale || 'нет'}
-                            </TableCellNorm>
+                                <TableCellNorm>
+                                    {product.dateSale || 'нет'}
+                                </TableCellNorm>
 
-                            <TableCellBold>
-                                {Number(product.price) - Number(product.expenses) - Number(product.otherExpenses)}
-                            </TableCellBold>
+                                <TableCellBold>
+                                    {Number(product.price) - Number(product.expenses) - Number(product.otherExpenses)}
+                                </TableCellBold>
 
-                            <TableCellNorm>
-                                <ButtonTable color="warning">
-                                    Ред.
-                                </ButtonTable>
-                            </TableCellNorm>
+                                <TableCellNorm>
+                                    <ButtonTable color="warning">
+                                        Ред.
+                                    </ButtonTable>
+                                </TableCellNorm>
 
-                            <TableCellNorm>
-                                <ButtonTable color="error">
-                                    Удалить
-                                </ButtonTable>
-                            </TableCellNorm>
+                                <TableCellNorm>
+                                    <ButtonTable color="error">
+                                        Удалить
+                                    </ButtonTable>
+                                </TableCellNorm>
 
 
-                        </TableRow>
-                    ))}
+                            </TableRow>
+                        ))}
                 </TableBody>
             </Table>
         </TableContainer>

@@ -10,12 +10,17 @@ import { AddPage } from "src/pages/AddPage/index.js";
 import { AllProduct } from "src/pages/AllProduct/index.js";
 import { Statistics } from "src/pages/Statistics/index.js";
 
+import { store } from './app/store/store.js'
+import { Provider } from 'react-redux'
+
 const router = createBrowserRouter([
     {
         path: "/",
         element:
         // <React.StrictMode>
+            <Provider store={store}>
             <App/>
+            </Provider>
         // </React.StrictMode>
         ,
         children: [

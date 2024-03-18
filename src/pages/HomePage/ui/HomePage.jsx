@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useOutletContext } from "react-router-dom";
+import React from 'react';
+import { useSelector } from "react-redux";
 
 import Box from "@mui/material/Box";
-
-import { getCollections } from "src/shared/api/getRequestsFirebase.js";
 import { MyTable } from "src/widgets/Table/index.js";
+import { getAllProducts } from "src/pages/HomePage/selectors/getProducts.js";
 import cls from "./HomePage.module.scss";
 
 export const HomePage = () => {
-    const { app, db, auth } = useOutletContext();
-    const [products, setProducts] = useState([])
 
-    const getProducts = async () => {
-        setProducts(await getCollections(db, 'products'))
-    }
-
-    useEffect(() => {
-        getProducts()
-    }, [db])
+    const products = useSelector(getAllProducts)
 
     return (
         <Box

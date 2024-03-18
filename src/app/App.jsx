@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { useEffect } from "react";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -7,6 +7,8 @@ import { getAuth } from "firebase/auth";
 import { AuthPage } from "src/pages/AuthPage/index.js";
 import { Loader } from "src/widgets/Loader/ui/Loader.jsx"
 import { Layout } from "./Layout/Layout.jsx";
+import { getCollectionThunk } from "src/pages/HomePage/model/api/requestsFirebase.js";
+import { useDispatch } from "react-redux";
 
 
 const firebaseConfig = {
@@ -19,6 +21,7 @@ const firebaseConfig = {
 };
 
 function App() {
+    const dispatch = useDispatch()
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -27,6 +30,11 @@ function App() {
 
     const [user, loading, error] = useIdToken(auth);
 
+    useEffect(() => {
+        // getProducts()
+        dispatch(getCollectionThunk(db))
+
+    }, [db, dispatch])
 
     if (loading) {
         return <Loader/>

@@ -34,7 +34,9 @@ export const MyTable = ({ products }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {products.filter(el => el.state !== 'Продан').map((product) => (
+                    {products && Object.values(products)
+                        .filter(el => el.state !== 'Продан')
+                        .map((product) => (
                         <TableRow
                             key={product.id}
                             className={cls.tableRow}
