@@ -9,7 +9,8 @@ import { getCollectionThunk } from "src/pages/HomePage/model/api/requestsFirebas
 import { useOutletContext } from "react-router-dom";
 
 export const HomePage = () => {
-
+    const { auth, db, app } = useOutletContext()
+    const dispatch = useDispatch()
     const products = useSelector(getAllProducts)
 
     useEffect(() => {
