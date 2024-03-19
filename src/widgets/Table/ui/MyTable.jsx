@@ -12,13 +12,20 @@ import { TableCellBold } from "src/shared/ui/TableCellBold/TableCellBold.jsx";
 import { TableCellNorm } from "src/shared/ui/TableCellNorm/TableCellNorm.jsx";
 import { ButtonTable } from "src/shared/ui/ButtonTable/ButtonTable.jsx";
 import { setBackgroundColor } from "src/shared/lib/setBackgroundColor/setBackgroundColor.js";
+import { useNavigate } from "react-router-dom";
 
 
 export const MyTable = ({ products }) => {
 
+    const navigate = useNavigate()
+
     const tableCellTitle = useMemo(() => ['Название', 'Стоимость',
             'Описание', 'Дата создания', 'Состояние', 'Отложить', 'Редактировать'],
         [])
+
+    const goToFixPage = (id) => {
+        navigate(`/fix/${id}`)
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -34,9 +41,9 @@ export const MyTable = ({ products }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {products && Object.values(products)
-                        .filter(el => el.state !== 'Продан')
-                        .map((product) => (
+                    {products && Object.entries(products)
+                        .filter(([key1, el])=> el.state !== 'Продан')
+                        .map(([key, product]) => (
                         <TableRow
                             key={product.id}
                             className={cls.tableRow}
@@ -71,7 +78,12 @@ export const MyTable = ({ products }) => {
                                 </ButtonTable>
                             </TableCellNorm>
                             <TableCellNorm>
-                                <ButtonTable color="warning">
+                                <ButtonTable
+                                    color="warning"
+                                    onClick={() => {
+                                        goToFixPage(key)
+                                    }}
+                                >
                                     Ред.
                                 </ButtonTable>
                             </TableCellNorm>

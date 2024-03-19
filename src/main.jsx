@@ -12,6 +12,7 @@ import { Statistics } from "src/pages/Statistics/index.js";
 
 import { store } from './app/store/store.js'
 import { Provider } from 'react-redux'
+import { FixPage } from "src/pages/FixPage/index.js";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: '/stat',
                 element: <Statistics/>,
+            },
+            {
+                path: '/fix/*',
+                element: <FixPage/>,
             },
             {
                 path: "*",

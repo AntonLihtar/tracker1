@@ -250,12 +250,12 @@ export const AddPage = () => {
                 />
 
                 <Button
-                    sx={{ margin: 4 }}
+                    sx={{ margin: 4, marginTop: 1 }}
                     variant="contained"
                     type="submit"
                     disabled={!(valueBrand && valueModel)}
                 >
-                    Отправить
+                    Добавить
                 </Button>
             </form>
             <Modal

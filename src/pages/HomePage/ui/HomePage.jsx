@@ -1,14 +1,22 @@
-import React from 'react';
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 import Box from "@mui/material/Box";
 import { MyTable } from "src/widgets/Table/index.js";
 import { getAllProducts } from "src/pages/HomePage/selectors/getProducts.js";
 import cls from "./HomePage.module.scss";
+import { getCollectionThunk } from "src/pages/HomePage/model/api/requestsFirebase.js";
+import { useOutletContext } from "react-router-dom";
 
 export const HomePage = () => {
 
     const products = useSelector(getAllProducts)
+
+    useEffect(() => {
+        // getProducts()
+        dispatch(getCollectionThunk(db))
+
+    }, [db, dispatch])
 
     return (
         <Box

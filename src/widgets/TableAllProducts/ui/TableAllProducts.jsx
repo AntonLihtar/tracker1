@@ -10,14 +10,20 @@ import { TableCellBold } from "src/shared/ui/TableCellBold/TableCellBold.jsx";
 import { TableCellNorm } from "src/shared/ui/TableCellNorm/TableCellNorm.jsx";
 import { ButtonTable } from "src/shared/ui/ButtonTable/ButtonTable.jsx";
 import { setBackgroundColor } from "src/shared/lib/setBackgroundColor/setBackgroundColor.js";
+import { useNavigate } from "react-router-dom";
 
 
 export const TableAllProducts = ({ products }) => {
+
+    const navigate = useNavigate()
 
     const tableCellTitle = useMemo(() => [
         'Бренд', 'Модель', 'Состояние', 'Imei', 'Описание', 'Стоимость', 'Доп затраты', 'Общая стоимость',
         'Дата создания', 'Цена продажи', 'Дата продажи', 'Маржа', 'Ред.', 'Удалить'
     ], [])
+    const goToFixPage = (id) => {
+        navigate(`/fix/${id}`)
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -36,8 +42,8 @@ export const TableAllProducts = ({ products }) => {
 
 
                 <TableBody>
-                    {products && Object.values(products)
-                        .map((product) => (
+                    {products && Object.entries(products)
+                        .map(([key, product]) => (
                             <TableRow
                                 key={product.id}
                                 className={cls.tableRow}
@@ -86,7 +92,12 @@ export const TableAllProducts = ({ products }) => {
                                 </TableCellBold>
 
                                 <TableCellNorm>
-                                    <ButtonTable color="warning">
+                                    <ButtonTable
+                                        color="warning"
+                                        onClick={() => {
+                                            goToFixPage(key)
+                                        }}
+                                    >
                                         Ред.
                                     </ButtonTable>
                                 </TableCellNorm>
