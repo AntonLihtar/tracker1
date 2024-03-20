@@ -36,7 +36,7 @@ const style = {
 
 export const FixPage = () => {
 
-    const { app, db, auth } = useOutletContext();
+    const { db } = useOutletContext();
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -51,8 +51,6 @@ export const FixPage = () => {
     }, []);
 
     const product = products[id]
-    console.log(product)
-
 
     //модели которых еще нет в базе
     const [valueState, setValueState] = React.useState(product?.state);
@@ -60,7 +58,7 @@ export const FixPage = () => {
     const [valueExpenses, setValueExpenses] = React.useState(product?.expenses);
     const [valueDescription, setValueDescription] = React.useState(product?.description);
     const [valueOtherExpenses, setValueOtherExpenses] = React.useState(product?.otherExpenses);
-    const [valuePrice, setValuePrice] = React.useState(0);
+    const [valuePrice, setValuePrice] = React.useState(product?.price);
 
     //модалка
     const [openModal, setOpenModal] = useState(false)

@@ -1,26 +1,27 @@
 import * as React from 'react';
-
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import cls from "./MyTable.module.scss";
-import { useMemo } from "react";
 import { TableCellBold } from "src/shared/ui/TableCellBold/TableCellBold.jsx";
 import { TableCellNorm } from "src/shared/ui/TableCellNorm/TableCellNorm.jsx";
 import { ButtonTable } from "src/shared/ui/ButtonTable/ButtonTable.jsx";
 import { setBackgroundColor } from "src/shared/lib/setBackgroundColor/setBackgroundColor.js";
-import { useNavigate } from "react-router-dom";
+import cls from "./MyTable.module.scss";
 
 
-export const MyTable = ({ products }) => {
+export const MyTable = ({ products, fixState}) => {
 
     const navigate = useNavigate()
 
     const tableCellTitle = useMemo(() => ['Название', 'Стоимость',
-            'Описание', 'Дата создания', 'Состояние', 'Отложить', 'Редактировать'],
+            'Описание', 'Дата создания', 'Продажа',
+            // 'Отложить',
+            'Редактировать'],
         [])
 
     const goToFixPage = (id) => {
@@ -68,15 +69,28 @@ export const MyTable = ({ products }) => {
                                 {product.date}
                             </TableCellNorm>
                             <TableCellNorm>
-                                <ButtonTable color="info">
+                                <ButtonTable
+                                    color="info"
+                                    onClick={()=> fixState(key, product)}
+                                >
                                     Продал
                                 </ButtonTable>
                             </TableCellNorm>
-                            <TableCellNorm>
-                                <ButtonTable color="info">
-                                    Отложить
-                                </ButtonTable>
-                            </TableCellNorm>
+
+                            {/*<TableCellNorm>*/}
+                            {/*    {product.state === 'Продается'*/}
+                            {/*        ? (<ButtonTable color="info">*/}
+                            {/*            Отложить*/}
+                            {/*        </ButtonTable>*/}
+                            {/*            )*/}
+                            {/*        :*/}
+                            {/*            (*/}
+                            {/*            <ButtonTable color="info">*/}
+                            {/*        На продажу*/}
+                            {/*        </ButtonTable>)*/}
+                            {/*    }*/}
+                            {/*</TableCellNorm>*/}
+
                             <TableCellNorm>
                                 <ButtonTable
                                     color="warning"

@@ -6,7 +6,6 @@ export const getCollectionThunk = createAsyncThunk(
     'products/getCollection',
     async (db) => {
         const querySnapshot = await getDocs(collection(db, 'products'));
-        console.log('getCollectionThunk work')
         const obj = {}
         querySnapshot.forEach((doc) => {
             obj[doc.id] = doc.data()

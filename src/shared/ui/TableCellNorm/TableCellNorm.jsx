@@ -7,7 +7,8 @@ export const TableCellNorm = (props) => {
         <TableCell
             align="left"
             padding="none"
-            sx={{ padding: 1}}
+            sx={{ padding: 1
+        }}
             {...props}
         >
             {props.children}

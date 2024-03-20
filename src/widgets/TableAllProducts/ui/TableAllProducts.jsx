@@ -13,7 +13,7 @@ import { setBackgroundColor } from "src/shared/lib/setBackgroundColor/setBackgro
 import { useNavigate } from "react-router-dom";
 
 
-export const TableAllProducts = ({ products }) => {
+export const TableAllProducts = ({ products, deleteProduct }) => {
 
     const navigate = useNavigate()
 
@@ -103,7 +103,10 @@ export const TableAllProducts = ({ products }) => {
                                 </TableCellNorm>
 
                                 <TableCellNorm>
-                                    <ButtonTable color="error">
+                                    <ButtonTable
+                                        color="error"
+                                        onClick={() => deleteProduct(key, `${product.brand} ${product.model}`)}
+                                    >
                                         Удалить
                                     </ButtonTable>
                                 </TableCellNorm>
