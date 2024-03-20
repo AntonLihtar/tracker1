@@ -86,7 +86,7 @@ export const FixPage = () => {
 
     const closeBtnGoHome = () => {
         setOpenModal(false)
-        navigate('/')
+        navigate(-1)
     }
 
     return (
