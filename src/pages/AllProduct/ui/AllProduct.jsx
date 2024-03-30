@@ -31,11 +31,11 @@ const style = {
 export const AllProduct = () => {
 
     const { db } = useOutletContext()
+    const products = useSelector(getAllProducts)
     const dispatch = useDispatch()
 
     //модалка
     const [openModal, setOpenModal] = useState(false)
-    const products = useSelector(getAllProducts)
 
     const [idProduct, setIdProduct] = useState('')
     const [nameProduct, setNameProduct] = useState('')
@@ -72,7 +72,7 @@ export const AllProduct = () => {
                 border: { xs: 'none', md: '2px solid grey' }
             }}
         >
-            <h2>Все товары</h2>
+            <h2>Все позиции в базе данных</h2>
             <TableAllProducts products={products} deleteProduct={deleteProduct}/>
 
             <Modal

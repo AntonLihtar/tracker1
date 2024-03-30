@@ -1,2 +1,66 @@
-.Statistics{
+.Statistics {
+}
+
+h2{
+  margin: 20px auto;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.blocks {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Block {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.PodBlock{
+  width: 80%;
+  margin: 0 auto;
+  //border: 1px solid #e0dfdf;
+  //border-radius: 5px;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: 12px;
+  display: flex;
+}
+
+@media screen and (min-width: 440px){
+  .blocks {
+    width: 85%;
+  }
+  .Block{
+    font-size: 20px;
+  }
+  .PodBlock{
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 786px){
+  .blocks{
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .blocks{
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1200px){
+  .blocks{
+    width: 50%;
+  }
 }

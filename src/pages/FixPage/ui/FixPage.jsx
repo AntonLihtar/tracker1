@@ -66,7 +66,6 @@ export const FixPage = () => {
 
     const submitForm = (e) => {
         e.preventDefault()
-
         setProductToID(db, id, {
             ...product,
             state: valueState,
@@ -87,6 +86,10 @@ export const FixPage = () => {
     const closeBtnGoHome = () => {
         setOpenModal(false)
         navigate(-1)
+    }
+
+    const notZero = (value) => {
+        return (value === 0) ? '' : value
     }
 
     return (
@@ -146,7 +149,7 @@ export const FixPage = () => {
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                             }}
-                            value={valueExpenses}
+                            value={notZero(valueExpenses)}
                             onChange={(event) => {
                                 setValueExpenses(Number(event.target.value))
                             }}
@@ -177,7 +180,7 @@ export const FixPage = () => {
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                             }}
-                            value={valueOtherExpenses}
+                            value={notZero(valueOtherExpenses)}
                             onChange={(event) => {
                                 setValueOtherExpenses(Number(event.target.value))
                             }}
@@ -193,7 +196,7 @@ export const FixPage = () => {
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">руб</InputAdornment>,
                             }}
-                            value={valuePrice}
+                            value={notZero(valuePrice)}
                             onChange={(event) => {
                                 setValuePrice(Number(event.target.value))
                             }}

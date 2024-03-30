@@ -20,8 +20,8 @@ import cls from './NavBar.module.scss';
 
 const pages = [
     { name: 'Главная', path: '/' },
-    { name: 'Добавить товар', path: 'add' },
-    { name: 'Все товары', path: 'all' },
+    { name: 'Добавить позицию', path: 'add' },
+    { name: 'Все позиции', path: 'all' },
     { name: 'Статистика', path: 'stat' }
 ];
 

@@ -156,7 +156,7 @@ export const AddPage = () => {
                 border: { xs: 'none', sm: '2px solid grey' }
             }}
         >
-            <h2>Товар</h2>
+            <h2>Описание</h2>
 
             <form
                 action=""

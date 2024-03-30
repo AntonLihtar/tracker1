@@ -47,7 +47,7 @@ export const HomePage = () => {
                 border: { xs: 'none', md: '2px solid grey' }
             }}
         >
-            <h2>Активные товары</h2>
+            <h2>Активные позиции</h2>
             <MyTable
                 products={products}
                 fixState={fixStateToID}
